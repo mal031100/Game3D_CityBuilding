@@ -14,8 +14,29 @@ public class ResourceManager : MonoBehaviour
         ResourceManager.instance = this;
     }
 
-    protected virtual void AddResource(ResourceName resourceName, int number)
+    public virtual Resource AddResource(ResourceName resourceName, int number)
     {
+        //Debug.Log("Add: " + resourceName + " - " + number);
 
+        Resource res = this.GetResByName(resourceName);
+
+        res.number += number;
+        return res;
+    }
+
+    public virtual Resource GetResByName(ResourceName resourceName)
+    {
+        Resource res = this.resources.Find((x) => x.name == resourceName);
+
+        if (res == null)
+        {
+            res = new Resource();
+            res.name = resourceName;
+            res.number = 0;
+
+            this.resources.Add(res);
+        }
+
+        return res;
     }
 }

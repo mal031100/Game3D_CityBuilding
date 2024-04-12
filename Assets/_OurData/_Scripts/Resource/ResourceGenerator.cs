@@ -23,5 +23,6 @@ public class ResourceGenerator : MonoBehaviour
         this.timer = 0f;
 
         // Add resource
+        ResourceManager.instance.AddResource(this.resourceName, this.number);
     }
 }

@@ -3,6 +3,6 @@ using System;
 [Serializable]
 public class Resource
 {
-    public ResourceName resourceName;
+    public ResourceName name;
     public int number;
 }
