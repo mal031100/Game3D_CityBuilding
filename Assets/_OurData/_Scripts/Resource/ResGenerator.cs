@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ResGenerator : LoadBehaviour
+public class ResGenerator : WhereHouse
 {
-    [SerializeField] protected List<ResHoder> resHoders;
     [SerializeField] protected List<Resource> resCreate; // item tao ra
     [SerializeField] protected List<Resource> resRequire; // item can
     [SerializeField] protected float createTimer = 0f;
@@ -14,29 +14,6 @@ public class ResGenerator : LoadBehaviour
     protected override void FixedUpdate()
     {
         this.Creating();
-    }
-
-    protected override void LoadComponents()
-    {
-        base.LoadComponents();
-        this.LoadHoders();
-    }
-
-    protected virtual void LoadHoders()
-    {
-        if(this.resHoders.Count > 0) return;
-
-        Transform res = transform.Find("Res");
-        foreach(Transform resTran in res)
-        {
-            Debug.LogWarning(resTran.name);
-
-            ResHoder resHoder = resTran.GetComponent<ResHoder>();
-            if (resHoder == null) continue;
-            this.resHoders.Add(resHoder);
-        }
-
-        Debug.Log(transform.name + ": Load Hoder");
     }
 
     protected virtual void Creating()
@@ -49,7 +26,7 @@ public class ResGenerator : LoadBehaviour
 
         foreach(Resource res in this.resCreate)
         {
-            ResHoder resHoder = this.resHoders.Find((holder) => holder.Name() == res.name); 
+            ResHoder resHoder = this.GetHoder(res.name);
             resHoder.Add(res.number);
         }
     }
@@ -60,5 +37,10 @@ public class ResGenerator : LoadBehaviour
 
         // TODO: this is not done yet
         return false;
+    }
+
+    public virtual float GetCreateDelay()
+    {
+        return this.createDelay;
     }
 }

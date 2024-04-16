@@ -30,4 +30,9 @@ public class ResHoder : LoadBehaviour
         if(this.resCurrent > this.resMax) this.resCurrent = this.resMax;
         return this.resCurrent;
     }
+
+    public virtual void SetLimit(float max)
+    {
+        this.resMax = max;
+    }
 }
