@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ResGenerator : WhereHouse
+public class ResGenerator : WareHouse
 {
     [SerializeField] protected List<Resource> resCreate; // item tao ra
     [SerializeField] protected List<Resource> resRequire; // item can

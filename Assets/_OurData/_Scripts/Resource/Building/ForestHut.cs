@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForestHut : WhereHouse
+public class ForestHut : WareHouse
 {
     
 }
